@@ -41,7 +41,7 @@ function Sidebar() {
               className="sidebar-nav-item"
               onClick={() => navigate(item.path)}
             >
-              <span className="nav-icon"><Icon /></span>
+              <Icon />
               <span>{item.label}</span>
             </button>
           );
