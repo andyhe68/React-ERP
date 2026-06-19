@@ -22,6 +22,9 @@ function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isActive = (path: string): boolean =>
+    location.pathname === path || location.pathname.startsWith(path + '/');
+
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
@@ -33,16 +36,16 @@ function Sidebar() {
       </div>
       <nav className="sidebar-nav">
         {NAV_ITEMS.map((item) => {
-          const isActive = location.pathname === item.path;
+          const current = isActive(item.path);
           const Icon = item.icon;
           return (
             <button
               key={item.path}
-              className="sidebar-nav-item"
+              className={current ? 'sidebar-nav-item active' : 'sidebar-nav-item'}
               onClick={() => navigate(item.path)}
             >
               <Icon />
-              <span>{item.label}</span>
+              {item.label}
             </button>
           );
         })}
